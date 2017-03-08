@@ -3,25 +3,25 @@ import * as elasticsearch from 'elasticsearch';
 
 @Injectable()
 export class SearchService {
+  host: string;
+  log: string;
 
-  constructor() { }
-
-  createClient() {
-    let client = new elasticsearch.Client({
-      host: 'http://search-unifier-backend-7ukbssnzsrg4e54exrkr2j637q.us-west-2.es.amazonaws.com',
-      log: 'trace'
-    });
-
-    return client;
+  constructor() {
+    this.host = 'http://search-unifier-backend-7ukbssnzsrg4e54exrkr2j637q.us-west-2.es.amazonaws.com',
+    this.log = 'trace'
   }
 
-  query(q) {
-    let client = this.createClient();
+  query(q: string) {
+
+    let client = new elasticsearch.Client({
+      host: this.host,
+      log: this.log
+    });
 
     client.search({
       q: q
     }).then(body => {
-      console.log(body)
+      return body.hits;
     })
   }
 

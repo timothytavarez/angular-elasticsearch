@@ -21,7 +21,7 @@ resultsText: string = '';
   onSubmit(f: NgForm) {
     console.log(f.value.query);
 
-    // this.search.query(f.value.query);
+    this.search.query(f.value.query);
   }
 
 }
