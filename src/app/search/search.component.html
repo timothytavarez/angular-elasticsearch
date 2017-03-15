@@ -7,6 +7,6 @@
   <button>Search</button>
 </form>
 
-<p>
-  {{resultsText}}
+<p *ngFor="let obj of responseArr">
+  {{obj}}
 </p>

@@ -11,6 +11,7 @@ import { SearchService } from '../search.service';
 export class SearchComponent implements OnInit {
 query: string;
 resultsText: string = '';
+responseArr: Array<any>;
 
   constructor(public search: SearchService) {
   }
@@ -21,7 +22,10 @@ resultsText: string = '';
   onSubmit(f: NgForm) {
     console.log(f.value.query);
 
-    this.search.query(f.value.query);
+    this.search.getSearchResults(f.value.query)
+    .then(res => {
+      console.log(res);
+    })
   }
 
 }
